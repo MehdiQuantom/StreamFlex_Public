@@ -26,6 +26,10 @@ export default function HomeScreen() {
   const [trending, setTrending] = useState<Movie[]>([]);
   const [popularMovies, setPopularMovies] = useState<Movie[]>([]);
   const [popularTV, setPopularTV] = useState<Movie[]>([]);
+  const [topRatedMovies, setTopRatedMovies] = useState<Movie[]>([]);
+  const [topRatedTV, setTopRatedTV] = useState<Movie[]>([]);
+  const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
+  const [trendingTV, setTrendingTV] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,15 +39,31 @@ export default function HomeScreen() {
   const loadContent = async () => {
     try {
       setLoading(true);
-      const [trendingData, moviesData, tvData] = await Promise.all([
+      const [
+        trendingData,
+        moviesData,
+        tvData,
+        topMoviesData,
+        topTVData,
+        trendingMoviesData,
+        trendingTVData,
+      ] = await Promise.all([
         tmdbService.getTrending('all', 'week'),
         tmdbService.getPopular('movie'),
         tmdbService.getPopular('tv'),
+        tmdbService.getTopRated('movie'),
+        tmdbService.getTopRated('tv'),
+        tmdbService.getTrending('movie', 'week'),
+        tmdbService.getTrending('tv', 'week'),
       ]);
       
       setTrending(trendingData.slice(0, 10));
       setPopularMovies(moviesData.slice(0, 10));
       setPopularTV(tvData.slice(0, 10));
+      setTopRatedMovies(topMoviesData.slice(0, 10));
+      setTopRatedTV(topTVData.slice(0, 10));
+      setTrendingMovies(trendingMoviesData.slice(0, 10));
+      setTrendingTV(trendingTVData.slice(0, 10));
     } catch (error) {
       console.error('Error loading content:', error);
     } finally {
@@ -57,10 +77,6 @@ export default function HomeScreen() {
       pathname: '/(tabs)/(home)/details',
       params: { id: item.id, mediaType },
     });
-  };
-
-  const handleSearchPress = () => {
-    router.push('/(tabs)/(home)/search');
   };
 
   const renderPosterItem = (item: Movie) => {
@@ -166,10 +182,7 @@ export default function HomeScreen() {
       />
       
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>StreamFlix</Text>
-        <TouchableOpacity onPress={handleSearchPress} style={styles.searchButton}>
-          <IconSymbol name="magnifyingglass" size={24} color={colors.text} />
-        </TouchableOpacity>
+        <Text style={styles.headerTitle}>StreamFlex</Text>
       </View>
 
       <ScrollView
@@ -218,6 +231,58 @@ export default function HomeScreen() {
             </ScrollView>
           </View>
         )}
+
+        {topRatedMovies.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Top Rated Movies</Text>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.horizontalScroll}
+            >
+              {topRatedMovies.map(renderPosterItem)}
+            </ScrollView>
+          </View>
+        )}
+
+        {topRatedTV.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Top Rated TV Shows</Text>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.horizontalScroll}
+            >
+              {topRatedTV.map(renderPosterItem)}
+            </ScrollView>
+          </View>
+        )}
+
+        {trendingMovies.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Trending Movies</Text>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.horizontalScroll}
+            >
+              {trendingMovies.map(renderPosterItem)}
+            </ScrollView>
+          </View>
+        )}
+
+        {trendingTV.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Trending TV Shows</Text>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.horizontalScroll}
+            >
+              {trendingTV.map(renderPosterItem)}
+            </ScrollView>
+          </View>
+        )}
       </ScrollView>
     </View>
   );
@@ -251,9 +316,6 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     color: colors.primary,
-  },
-  searchButton: {
-    padding: 8,
   },
   scrollView: {
     flex: 1,

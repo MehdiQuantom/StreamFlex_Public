@@ -15,6 +15,18 @@ export default function TabLayout() {
       label: 'Home',
     },
     {
+      name: 'search',
+      route: '/(tabs)/search',
+      icon: 'magnifyingglass',
+      label: 'Search',
+    },
+    {
+      name: 'about',
+      route: '/(tabs)/about',
+      icon: 'info.circle.fill',
+      label: 'About',
+    },
+    {
       name: 'profile',
       route: '/(tabs)/profile',
       icon: 'person.fill',
@@ -28,6 +40,14 @@ export default function TabLayout() {
         <NativeTabs.Trigger name="(home)">
           <Icon sf="house.fill" drawable="ic_home" />
           <Label>Home</Label>
+        </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="search">
+          <Icon sf="magnifyingglass" drawable="ic_search" />
+          <Label>Search</Label>
+        </NativeTabs.Trigger>
+        <NativeTabs.Trigger name="about">
+          <Icon sf="info.circle.fill" drawable="ic_info" />
+          <Label>About</Label>
         </NativeTabs.Trigger>
         <NativeTabs.Trigger name="profile">
           <Icon sf="person.fill" drawable="ic_profile" />
@@ -46,6 +66,8 @@ export default function TabLayout() {
         }}
       >
         <Stack.Screen name="(home)" />
+        <Stack.Screen name="search" />
+        <Stack.Screen name="about" />
         <Stack.Screen name="profile" />
       </Stack>
       <FloatingTabBar tabs={tabs} />
