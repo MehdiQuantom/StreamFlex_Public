@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "stream-flex-sfihpe",
-    "slug": "stream-flex-sfihpe",
+    "name": "StreamFlex",
+    "slug": "StreamFlex",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/natively-dark.png",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/images/natively-dark.png",
+      "image": "./assets/images/dark.png",
       "resizeMode": "contain",
       "backgroundColor": "#000000"
     },
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/natively-dark.png",
+        "foregroundImage": "./assets/images/dark.png",
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
