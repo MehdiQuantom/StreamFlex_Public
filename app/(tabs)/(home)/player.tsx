@@ -13,6 +13,7 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { colors } from '@/styles/commonStyles';
 import { WebView } from 'react-native-webview';
 import { IconSymbol } from '@/components/IconSymbol';
+import { videoServers } from '@/config/apiConfig';
 
 const { width, height } = Dimensions.get('window');
 
@@ -51,6 +52,12 @@ export default function PlayerScreen() {
 
       <View style={styles.infoBar}>
         <Text style={styles.infoText}>Playing from: {serverName}</Text>
+        {serverName === videoServers.vipServer.name && videoServers.vipServer.supportsDolbyAtmos && (
+          <View style={styles.dolbyBadge}>
+            <IconSymbol name="speaker.wave.3.fill" size={14} color={colors.background} />
+            <Text style={styles.dolbyText}>Dolby Atmos available</Text>
+          </View>
+        )}
       </View>
 
       <View style={styles.playerContainer}>
@@ -206,5 +213,22 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.textSecondary,
     lineHeight: 16,
+  },
+  dolbyBadge: {
+    position: 'absolute',
+    right: 16,
+    top: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.primary,
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    borderRadius: 12,
+    gap: 6,
+  },
+  dolbyText: {
+    color: colors.background,
+    fontSize: 12,
+    fontWeight: '600',
   },
 });

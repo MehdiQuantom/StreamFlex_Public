@@ -20,6 +20,10 @@ export const videoServers = {
     tvPath: '/tv/',
     requiresSubscription: true,
     seriesSupported: true,
+    // New metadata flags for VIP Server capabilities
+    supportsDolbyAtmos: true,
+    supportsDolbyVision: true,
+    audioFormats: ['Dolby Atmos', 'AC3', 'AAC'],
     name: 'VIP Server'
   }
 };

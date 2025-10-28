@@ -140,7 +140,7 @@ export default function DetailsScreen() {
       
       router.push({
         pathname: '/(tabs)/(home)/player',
-        params: { url, title: details?.title || details?.name },
+        params: { url, title: details?.title || details?.name, serverName: server.name },
       });
     }
   };
@@ -168,6 +168,7 @@ export default function DetailsScreen() {
       params: {
         url,
         title: `${details?.name} - S${selectedSeason?.season_number}E${episode.episode_number}`,
+        serverName: server.name,
       },
     });
   };

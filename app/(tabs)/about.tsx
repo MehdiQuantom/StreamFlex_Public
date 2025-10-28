@@ -13,6 +13,7 @@ import { Stack } from 'expo-router';
 import { colors } from '@/styles/commonStyles';
 import { IconSymbol } from '@/components/IconSymbol';
 import { LinearGradient } from 'expo-linear-gradient';
+import { changelog } from '@/app/changelog';
 
 export default function AboutScreen() {
   const handleTelegramPress = () => {
@@ -80,6 +81,18 @@ export default function AboutScreen() {
             <IconSymbol name="tv.fill" size={20} color={colors.primary} />
             <Text style={styles.featureText}>Season and episode selection for TV shows</Text>
           </View>
+        </View>
+
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Changelog</Text>
+          {changelog.map((entry) => (
+            <View key={entry.version} style={styles.changelogEntry}>
+              <Text style={styles.changelogVersion}>{entry.version} — {entry.date}</Text>
+              {entry.notes.map((n: string, i: number) => (
+                <Text key={i} style={styles.changelogNote}>• {n}</Text>
+              ))}
+            </View>
+          ))}
         </View>
 
         <View style={styles.developerSection}>

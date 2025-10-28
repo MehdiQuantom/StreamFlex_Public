@@ -1,23 +1,78 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
-    "baseUrl": ".",
+    "target": "ES2015",
+    "module": "esnext",
+    "lib": [
+      "ES2017",
+      "ES2018",
+      "ES2019",
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "react": [
+        "./types/react.d.ts"
+      ],
+      "react-native": [
+        "./types/react-native.d.ts"
+      ],
+      "expo-router": [
+        "./types/expo-router.d.ts"
+      ],
+      "@react-native-async-storage/async-storage": [
+        "./types/async-storage.d.ts"
+      ],
+      "@supabase/supabase-js": [
+        "./types/supabase.d.ts"
+      ],
+      "react-native-reanimated": [
+        "./types/reanimated.d.ts"
       ]
-    }
+    },
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./"
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
+    "app/**/*",
+    "components/**/*",
+    "config/**/*",
+    "contexts/**/*",
+    "services/**/*",
+    "styles/**/*",
+    "utils/**/*",
+    "*.ts",
+    "*.tsx",
+    "*.d.ts",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "workbox-config.js",
+    "expo-env.d.ts"
   ],
   "exclude": [
-    "node_modules"
-  ]
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ],
+  "extends": "expo/tsconfig.base"
 }

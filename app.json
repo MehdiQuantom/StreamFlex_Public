@@ -25,7 +25,8 @@
         "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.quantom.streamflex"
+      "package": "com.quantom.streamflex",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/images/final_quest_240x240.png",
@@ -41,7 +42,10 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {}
+      "router": {},
+      "eas": {
+        "projectId": "92cc44ae-feea-469f-98a7-4eb7a587a33a"
+      }
     }
   }
 }
