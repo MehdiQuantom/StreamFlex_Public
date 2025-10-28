@@ -6,6 +6,9 @@
       "android": {
         "buildType": "apk"
       },
+      "ios": {
+        "simulator": true
+      },
       "autoIncrement": true
     },
     "preview": {
@@ -13,11 +16,18 @@
       "android": {
         "buildType": "apk"
       },
+      "ios": {
+        "distribution": "internal"
+      },
       "autoIncrement": true
     },
     "production": {
       "android": {
         "buildType": "app-bundle"
+      },
+      "ios": {
+        "distribution": "store",
+        "enterpriseProvisioning": "universal"
       },
       "autoIncrement": true
     }

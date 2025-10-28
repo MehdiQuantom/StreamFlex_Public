@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.Natively",
+      "bundleIdentifier": "com.quantom.streamflex",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
